@@ -1,0 +1,105 @@
+name: Emergency Recovery
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Action to execute on server
+        required: true
+        type: choice
+        default: status_only
+        options:
+          - status_only
+          - restart_nginx
+          - restart_web_stack
+      confirm:
+        description: Type RECOVER for restart actions
+        required: false
+        type: string
+      reason:
+        description: Optional note (who/why)
+        required: false
+        type: string
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate destructive action
+        if: ${{ inputs.mode != 'status_only' && inputs.confirm != 'RECOVER' }}
+        run: |
+          echo "Restart action requested, but confirm is not RECOVER"
+          exit 1
+
+      - name: Prepare SSH
+        env:
+          RECOVERY_SSH_KEY: ${{ secrets.RECOVERY_SSH_KEY }}
+          RECOVERY_SSH_HOST: ${{ secrets.RECOVERY_SSH_HOST }}
+          RECOVERY_SSH_PORT: ${{ secrets.RECOVERY_SSH_PORT }}
+        run: |
+          set -euo pipefail
+          if [ -z "${RECOVERY_SSH_KEY:-}" ] || [ -z "${RECOVERY_SSH_HOST:-}" ]; then
+            echo "Missing recovery SSH secrets"
+            exit 1
+          fi
+
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$RECOVERY_SSH_KEY" > ~/.ssh/id_recovery
+          chmod 600 ~/.ssh/id_recovery
+
+          port="${RECOVERY_SSH_PORT:-22}"
+          ssh-keyscan -p "$port" "$RECOVERY_SSH_HOST" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Run recovery command
+        env:
+          RECOVERY_SSH_USER: ${{ secrets.RECOVERY_SSH_USER }}
+          RECOVERY_SSH_HOST: ${{ secrets.RECOVERY_SSH_HOST }}
+          RECOVERY_SSH_PORT: ${{ secrets.RECOVERY_SSH_PORT }}
+          MODE: ${{ inputs.mode }}
+          REASON: ${{ inputs.reason }}
+        run: |
+          set -euo pipefail
+          user="${RECOVERY_SSH_USER:-root}"
+          host="${RECOVERY_SSH_HOST}"
+          port="${RECOVERY_SSH_PORT:-22}"
+
+          ssh -i ~/.ssh/id_recovery -p "$port" -o StrictHostKeyChecking=yes "${user}@${host}" \
+            "MODE='${MODE}' REASON='${REASON}' bash -s" <<'REMOTE'
+          set -euo pipefail
+
+          echo "[host] $(hostname)"
+          echo "[utc] $(date -u)"
+          echo "[mode] ${MODE}"
+          echo "[reason] ${REASON:-n/a}"
+
+          case "${MODE}" in
+            status_only)
+              ;;
+            restart_nginx)
+              systemctl restart nginx
+              ;;
+            restart_web_stack)
+              systemctl restart nginx marketplace-next.service etern8-next.service dh22-staging.service
+              ;;
+            *)
+              echo "Unknown mode: ${MODE}"
+              exit 2
+              ;;
+          esac
+
+          echo "[service_status]"
+          systemctl is-active nginx marketplace-next.service etern8-next.service dh22-staging.service || true
+
+          echo "[http_checks]"
+          for url in \
+            https://dommarket.black8.tech/ \
+            https://etern8.tech/ \
+            https://dh22.ru/; do
+            code=$(curl -ksS -o /dev/null -w '%{http_code}' "$url" || true)
+            echo "$url -> $code"
+          done
+
+          echo "[recent_errors]"
+          journalctl -u nginx -u marketplace-next.service -u etern8-next.service -u dh22-staging.service -p err -n 30 --no-pager || true
+          REMOTE
