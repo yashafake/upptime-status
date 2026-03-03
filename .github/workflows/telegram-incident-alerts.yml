@@ -1,0 +1,55 @@
+name: Telegram Incident Alerts
+
+on:
+  issues:
+    types: [opened, reopened, closed]
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Custom test message (optional)
+        required: false
+        type: string
+
+jobs:
+  notify:
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.issue.title, ' is down')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build message
+        id: msg
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            text="${{ github.event.inputs.message }}"
+            if [ -z "$text" ]; then
+              text="[Upptime] Telegram test notification for ${{ github.repository }}"
+            fi
+          else
+            title="${{ github.event.issue.title }}"
+            url="${{ github.event.issue.html_url }}"
+            action="${{ github.event.action }}"
+
+            if [ "$action" = "closed" ]; then
+              text="✅ RECOVERY\n${title}\n${url}"
+            else
+              text="🚨 INCIDENT\n${title}\n${url}"
+            fi
+          fi
+
+          echo "text<<EOF" >> "$GITHUB_OUTPUT"
+          printf '%b\n' "$text" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Send Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.UPTIME_TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.UPTIME_TELEGRAM_CHAT_ID }}
+          TEXT: ${{ steps.msg.outputs.text }}
+        run: |
+          set -euo pipefail
+          curl -fsS --max-time 20 -X POST \
+            "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=${TEXT}" \
+            >/dev/null
