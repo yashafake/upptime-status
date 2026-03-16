@@ -2,8 +2,12 @@ owner: yashafake
 repo: upptime-status
 
 sites:
-  - name: Dommarket
-    url: https://dommarket.black8.tech/
+  - name: Vsedomatut.ru
+    url: https://vsedomatut.ru/
+    slug: vsedomatut-ru
+  - name: Вседоматут.рф
+    url: https://xn--80adgd0blsnaj.xn--p1ai/
+    slug: vsedomatut-rf
   - name: Etern8
     url: https://etern8.tech/
   - name: DH22
