@@ -16,8 +16,9 @@
 
 name: Update Template CI
 on:
-  schedule:
-    - cron: "0 0 * * *"
+  # schedule disabled to keep manual workflow patches from being overwritten weekly
+  # schedule:
+  #   - cron: "0 0 * * *"
   repository_dispatch:
     types: [update_template]
   workflow_dispatch:
@@ -25,6 +26,8 @@ jobs:
   release:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
