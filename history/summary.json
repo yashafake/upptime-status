@@ -4,18 +4,20 @@
     "url": "https://vsedomatut.ru/",
     "icon": "https://icons.duckduckgo.com/ip3/vsedomatut.ru.ico",
     "slug": "vsedomatut-ru",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.98%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 1603,
-    "timeDay": 1873,
-    "timeWeek": 2133,
-    "timeMonth": 2005,
-    "timeYear": 1603,
-    "dailyMinutesDown": {}
+    "time": 1595,
+    "timeDay": 1270,
+    "timeWeek": 1949,
+    "timeMonth": 1962,
+    "timeYear": 1595,
+    "dailyMinutesDown": {
+      "2026-07-28": 0
+    }
   },
   {
     "name": "Вседоматут.рф",
