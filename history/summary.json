@@ -4,18 +4,19 @@
     "url": "https://vsedomatut.ru/",
     "icon": "https://icons.duckduckgo.com/ip3/vsedomatut.ru.ico",
     "slug": "vsedomatut-ru",
-    "status": "up",
+    "status": "down",
     "uptime": "99.93%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
-    "uptimeMonth": "99.87%",
+    "uptimeMonth": "100.00%",
     "uptimeYear": "99.93%",
     "time": 1729,
     "timeDay": 2897,
     "timeWeek": 2278,
-    "timeMonth": 2269,
+    "timeMonth": 2266,
     "timeYear": 1729,
     "dailyMinutesDown": {
+      "2026-08-28": 0,
       "2026-07-28": 164
     }
   },
