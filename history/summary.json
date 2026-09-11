@@ -5,18 +5,19 @@
     "icon": "https://icons.duckduckgo.com/ip3/vsedomatut.ru.ico",
     "slug": "vsedomatut-ru",
     "status": "down",
-    "uptime": "92.96%",
+    "uptime": "92.45%",
     "uptimeDay": "0.00%",
     "uptimeWeek": "0.00%",
-    "uptimeMonth": "59.26%",
-    "uptimeYear": "92.96%",
+    "uptimeMonth": "55.99%",
+    "uptimeYear": "92.45%",
     "time": 1729,
     "timeDay": 0,
     "timeWeek": 0,
-    "timeMonth": 2283,
+    "timeMonth": 2297,
     "timeYear": 1729,
     "dailyMinutesDown": {
-      "2026-09-10": 155,
+      "2026-09-11": 149,
+      "2026-09-10": 1440,
       "2026-09-09": 1440,
       "2026-09-08": 1440,
       "2026-09-07": 1440,
@@ -47,7 +48,7 @@
     "time": 1781,
     "timeDay": 0,
     "timeWeek": 0,
-    "timeMonth": 2344,
+    "timeMonth": 2360,
     "timeYear": 1781,
     "dailyMinutesDown": {}
   },
@@ -65,7 +66,7 @@
     "time": 1161,
     "timeDay": 0,
     "timeWeek": 0,
-    "timeMonth": 1241,
+    "timeMonth": 1247,
     "timeYear": 1161,
     "dailyMinutesDown": {
       "2026-03-10": 49
@@ -85,7 +86,7 @@
     "time": 1100,
     "timeDay": 0,
     "timeWeek": 0,
-    "timeMonth": 1207,
+    "timeMonth": 1219,
     "timeYear": 1100,
     "dailyMinutesDown": {
       "2026-03-10": 48
