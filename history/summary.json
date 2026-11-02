@@ -4,15 +4,15 @@
     "url": "https://vsedomatut.ru/",
     "icon": "https://icons.duckduckgo.com/ip3/vsedomatut.ru.ico",
     "slug": "vsedomatut-ru",
-    "status": "up",
-    "uptime": "82.11%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
-    "uptimeMonth": "75.19%",
-    "uptimeYear": "82.11%",
+    "status": "down",
+    "uptime": "82.18%",
+    "uptimeDay": "99.63%",
+    "uptimeWeek": "99.95%",
+    "uptimeMonth": "78.22%",
+    "uptimeYear": "82.18%",
     "time": 1790,
-    "timeDay": 1857,
-    "timeWeek": 1931,
+    "timeDay": 0,
+    "timeWeek": 1879,
     "timeMonth": 2180,
     "timeYear": 1790,
     "dailyMinutesDown": {
@@ -58,7 +58,8 @@
       "2026-08-31": 1440,
       "2026-08-30": 1440,
       "2026-08-29": 1440,
-      "2026-08-28": 411
+      "2026-08-28": 411,
+      "2026-11-02": 5
     }
   },
   {
@@ -66,37 +67,40 @@
     "url": "https://xn--80adgd0blsnaj.xn--p1ai/",
     "icon": "https://icons.duckduckgo.com/ip3/xn--80adgd0blsnaj.xn--p1ai.ico",
     "slug": "vsedomatut-rf",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
-    "uptimeMonth": "100.00%",
+    "uptimeDay": "99.74%",
+    "uptimeWeek": "99.96%",
+    "uptimeMonth": "99.99%",
     "uptimeYear": "100.00%",
     "time": 1841,
-    "timeDay": 1835,
-    "timeWeek": 1919,
+    "timeDay": 0,
+    "timeWeek": 1921,
     "timeMonth": 2167,
     "timeYear": 1841,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2026-11-02": 4
+    }
   },
   {
     "name": "Etern8",
     "url": "https://etern8.tech/",
     "icon": "https://icons.duckduckgo.com/ip3/etern8.tech.ico",
     "slug": "etern8",
-    "status": "up",
+    "status": "down",
     "uptime": "99.99%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
+    "uptimeDay": "99.86%",
+    "uptimeWeek": "99.98%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.99%",
     "time": 1171,
-    "timeDay": 1345,
-    "timeWeek": 1233,
+    "timeDay": 0,
+    "timeWeek": 1249,
     "timeMonth": 1227,
     "timeYear": 1171,
     "dailyMinutesDown": {
-      "2026-03-10": 49
+      "2026-03-10": 49,
+      "2026-11-02": 2
     }
   },
   {
@@ -104,19 +108,20 @@
     "url": "https://dh22.ru/",
     "icon": "https://icons.duckduckgo.com/ip3/dh22.ru.ico",
     "slug": "dh-22",
-    "status": "up",
+    "status": "down",
     "uptime": "99.99%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "99.99%",
     "time": 1106,
-    "timeDay": 1142,
-    "timeWeek": 1147,
+    "timeDay": 0,
+    "timeWeek": 1167,
     "timeMonth": 1142,
     "timeYear": 1106,
     "dailyMinutesDown": {
-      "2026-03-10": 48
+      "2026-03-10": 48,
+      "2026-11-02": 0
     }
   }
 ]
